@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("taskInput");
     const taskList = document.getElementById("taskList");
+    const addButton = document.querySelector("button");
 
     // Load tasks from local storage
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -10,9 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
         addTaskToList(task);
     });
 
+    // Add event listener to the button
+    addButton.addEventListener("click", addTask);
+
     // Add task function
     function addTask() {
         const taskText = taskInput.value.trim();
+        console.log("Task to be added:", taskText); // Debugging log
         if (taskText !== "") {
             tasks.push(taskText);
             addTaskToList(taskText);
@@ -44,4 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function saveTasks() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
+
+    // Debugging log
+    console.log("Document loaded");
 });
